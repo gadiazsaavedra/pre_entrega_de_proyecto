@@ -45,7 +45,7 @@ Todos los productos se almacenan en una lista llamada `productos`.
 
 ## Requisitos
 
-- Python 3.x
+- Python 3.8 o superior.
 
 ## Notas
 
