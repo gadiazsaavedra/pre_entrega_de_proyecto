@@ -48,8 +48,10 @@ while True:
             categoria = input("Ingrese la categoría del producto: ").strip()
 
         precio_str = input("Ingrese el precio del producto (sin centavos): ").strip()
-        while not (precio_str.isdigit() and int(precio_str) > 0):
-            print("El precio debe ser un número entero mayor que cero. Intente nuevamente.")
+        while not (precio_str.isdigit() and 0 < int(precio_str) <= 1_000_000):
+            print(
+                "El precio debe ser un número entero mayor que cero y menor o igual a 1,000,000. Intente nuevamente."
+            )
             precio_str = input(
                 "Ingrese el precio del producto (sin centavos): "
             ).strip()
