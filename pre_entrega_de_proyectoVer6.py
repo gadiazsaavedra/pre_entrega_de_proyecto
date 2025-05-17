@@ -63,6 +63,20 @@ while True:
             except ValueError:
                 print("El precio debe ser un número entero. Intente nuevamente.")
 
+        # Verificar si ya existe un producto con el mismo nombre pero diferente categoría
+        producto_existente = None
+        for p in productos:
+            if p["nombre"].lower() == nombre.lower() and p["categoria"].lower() != categoria.lower():
+                producto_existente = p
+                break
+        
+        if producto_existente:
+            print(f"¡ALERTA! Ya existe un producto con el nombre '{nombre}' en la categoría '{producto_existente['categoria']}'.")
+            confirmacion = input("¿Desea agregar este producto de todas formas? (s/n): ").strip().lower()
+            if confirmacion != "s":
+                print("Operación cancelada.")
+                continue
+
         productos.append({"nombre": nombre, "categoria": categoria, "precio": precio})
         print(f"Producto '{nombre}' agregado exitosamente.")
 
