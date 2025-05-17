@@ -93,6 +93,15 @@ while True:
                     ).strip()
                 eliminado = productos.pop(int(pos) - 1)
                 print(f"Producto '{eliminado['nombre']}' eliminado exitosamente.")
+                # Mostrar la lista actualizada
+                if productos:
+                    print("\n--- Lista actualizada de Productos ---")
+                    for i, p in enumerate(productos, start=1):
+                        print(
+                            f"{i}. Nombre: {p['nombre']}, Categoría: {p['categoria']}, Precio: ${p['precio']}"
+                        )
+                else:
+                    print("No quedan productos en la lista.")
 
     elif opcion == "3":
         if not productos:
