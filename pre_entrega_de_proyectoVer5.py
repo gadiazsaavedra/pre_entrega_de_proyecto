@@ -23,6 +23,8 @@ Notas:
     - Todas las entradas del usuario se validan para evitar errores y asegurar la consistencia de los datos.
     - El programa es interactivo y utiliza la consola para la entrada y salida de datos.
 """
+
+
 productos = []
 
 while True:
@@ -57,8 +59,7 @@ while True:
         )
         print(f"Producto '{nombre}' agregado exitosamente.")
 
-    # Bloque: Visualizar productos
-    elif opcion == "2" or opcion == "4":
+    elif opcion in ["2", "4"]:
         if not productos:
             print(
                 "No hay productos registrados."
@@ -91,34 +92,27 @@ while True:
                 eliminado = productos.pop(int(pos) - 1)
                 print(f"Producto '{eliminado['nombre']}' eliminado exitosamente.")
 
-    # Bloque: Buscar productos por nombre
     elif opcion == "3":
         if not productos:
             print("No hay productos registrados para buscar.")
-        else:
-            termino_busqueda = input(
-                "Ingrese el nombre del producto a buscar: "
-            ).strip()
-            if not termino_busqueda:
-                print("El término de búsqueda no puede estar vacío.")
-            else:
-                encontrados = [
-                    p
-                    for p in productos
-                    if termino_busqueda.lower() in p["nombre"].lower()
-                ]
-                if encontrados:
-                    print("\n--- Productos Encontrados ---")
-                    for p in encontrados:
-                        print(
-                            f"Nombre: {p['nombre']}, Categoría: {p['categoria']}, Precio: ${p['precio']}"
-                        )
-                else:
+        elif termino_busqueda := input(
+            "Ingrese el nombre del producto a buscar: "
+        ).strip():
+            if encontrados := [
+                p for p in productos if termino_busqueda.lower() in p["nombre"].lower()
+            ]:
+                print("\n--- Productos Encontrados ---")
+                for p in encontrados:
                     print(
-                        f"No se encontraron productos que contengan '{termino_busqueda}'."
+                        f"Nombre: {p['nombre']}, Categoría: {p['categoria']}, Precio: ${p['precio']}"
                     )
+            else:
+                print(
+                    f"No se encontraron productos que contengan '{termino_busqueda}'."
+                )
 
-    # Bloque: Salir del programa
+        else:
+            print("El término de búsqueda no puede estar vacío.")
     elif opcion == "5":
         print("Saliendo del programa. ¡Hasta luego!")
         break
